@@ -1,25 +1,14 @@
 const graphql=require('graphql')
+const _ =require('lodash')
 const {GraphQLObjectType,GraphQLString,GraphQLSchema}=graphql
-const _=require('lodash')
-var books=[
-    {
-        name:'Name of the wind',
-        genre: "Fanatasy",
-        id:1
-    },
-    {
-        name:'The Final Empire',
-        genre: "Fanatasy",
-        id:2
-    },
-    {
-        name:'The Long Earth',
-        genre: "Fanatasy",
-        id:3
-    },
-]
 
-const BBookType= new GraphQLObjectType({
+var books = [
+    { name: 'Name of the Wind', genre: 'Fantasy', id: '1' },
+    { name: 'The Final Empire', genre: 'Fantasy', id: '2' },
+    { name: 'The Long Earth', genre: 'Sci-Fi', id: '3' },
+];
+
+const BookType= new GraphQLObjectType({
     name:"Book",
     fields:()=>({
         id:{type:GraphQLString},
@@ -33,7 +22,7 @@ const RootQuery=new GraphQLObjectType({
     name:'RootQueryType',
     fields:{
         book:{
-            type:BBookType,
+            type:BookType,
             args:{id:{type:GraphQLString}},
             resolve(parent,args){
                 // code to get data from db ./other source
